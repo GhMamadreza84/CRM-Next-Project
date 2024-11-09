@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Form from "../module/Form";
+import { useRouter } from "next/router";
 
 const AddCustomerPage = () => {
   const [form, setForm] = useState({
@@ -13,8 +14,19 @@ const AddCustomerPage = () => {
     products: [],
   });
 
+  const router = useRouter();
+
+  const saveHandler = async () => {
+    const res = await fetch("/api/customers", {
+      method: "POST",
+      body: JSON.stringify({ data: form }),
+      headers: { "Content-Type": "application/json" },
+    });
+    const data = await res.json();
+    console.log(data);
+    if (data.status === "success") router.push("/");
+  };
   const cancelHandler = () => {};
-  const saveHandler = () => {};
   return (
     <div className="customer-page">
       <h4>Add New Customer</h4>
