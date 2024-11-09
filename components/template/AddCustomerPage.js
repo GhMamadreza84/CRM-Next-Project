@@ -26,7 +26,19 @@ const AddCustomerPage = () => {
     console.log(data);
     if (data.status === "success") router.push("/");
   };
-  const cancelHandler = () => {};
+  const cancelHandler = () => {
+    setForm({
+      name: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      address: "",
+      postalCode: "",
+      date: "",
+      products: [],
+    });
+    router.push("/");
+  };
   return (
     <div className="customer-page">
       <h4>Add New Customer</h4>
