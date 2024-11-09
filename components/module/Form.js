@@ -1,11 +1,7 @@
-import React from 'react'
+import FormInput from "./FormInput";
 
 const Form = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+  return <div></div>;
+};
 
-export default Form
+export default Form;
