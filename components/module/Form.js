@@ -1,7 +1,12 @@
 import FormInput from "./FormInput";
+import ItemList from "./ItemList";
 
-const Form = () => {
-  return <div></div>;
+const Form = ({ form, setForm }) => {
+  return (
+    <div>
+      <ItemList form={form} setForm={setForm} />
+    </div>
+  );
 };
 
 export default Form;
