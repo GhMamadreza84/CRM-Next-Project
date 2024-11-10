@@ -2,7 +2,6 @@ import connectDB from "../utils/connectDB";
 import Customer from "../models/Customer";
 import HomePage from "../components/template/HomePage";
 function Index({ customers }) {
-  console.log(customers);
   return <HomePage customers={customers} />;
 }
 
