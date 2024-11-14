@@ -1,6 +1,6 @@
 import connectDB from "../../../utils/connectDB";
 import Customer from "../../../models/Customer";
-export default async function handler(req, res) {
+async function handler(req, res) {
   try {
     await connectDB();
   } catch (error) {
@@ -35,3 +35,5 @@ export default async function handler(req, res) {
     }
   }
 }
+
+export default handler;

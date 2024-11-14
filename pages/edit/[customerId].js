@@ -1,26 +1,27 @@
-import connectDB from "../../utils/connectDB";
-import Customer from "../../models/Customer";
-export default async function handler(req, res) {
-  try {
-    await connectDB();
-  } catch (error) {
-    console.log(error.message);
-    res
-      .status(500)
-      .json({ status: "failed", message: "Error in connecting to DB" });
-    return;
-  }
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import CustomerEditPage from "../../components/template/CustomerEditPage";
+function Index() {
+  const [data, setData] = useState(null);
+  const router = useRouter();
 
-  if (req.method === "GET") {
-    const id = req.query.customerId;
-    try {
-      const customer = await Customer.findOne({ _id: id });
-      res.status(200).json({ status: "success", data: customer });
-    } catch (error) {
-      console.log(error.message);
-      res
-        .status(500)
-        .json({ status: "failed", message: "Error in connecting to DB" });
+  const {
+    query: { customerId },
+    isReady,
+  } = router;
+  useEffect(() => {
+    if (isReady) {
+      fetch(`/api/customer/${customerId}`)
+        .then((res) => res.json())
+        .then((data) => setData(data.data))
+        .catch((error) => console.error("Error fetching data:", error));
     }
+  }, [isReady]);
+  if (data) {
+    return <CustomerEditPage data={data} id={customerId} />;
+  } else {
+    return <h1>loading</h1>;
   }
 }
+
+export default Index;
