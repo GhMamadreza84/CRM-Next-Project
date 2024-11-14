@@ -20,17 +20,15 @@ const CustomerEditPage = ({ data, id }) => {
   const cancelHandler = () => {
     router.push("/");
   };
+
   const saveHandler = async () => {
     const res = await fetch(`/api/edit/${id}`, {
       method: "PATCH",
       body: JSON.stringify({ data: form }),
-      headers: { "Content-type": "application/json" },
+      headers: { "Content-Type": "application/json" },
     });
-    const data = await res.json;
-    console.log(data.status);
-    if (data.status === "success") {
-      router.push("/");
-    }
+    const data = await res.json();
+    if (data.status === "success") router.push("/");
   };
 
   return (

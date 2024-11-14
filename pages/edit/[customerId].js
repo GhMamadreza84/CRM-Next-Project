@@ -19,8 +19,6 @@ function Index() {
   }, [isReady]);
   if (data) {
     return <CustomerEditPage data={data} id={customerId} />;
-  } else {
-    return <h1>loading</h1>;
   }
 }
 
