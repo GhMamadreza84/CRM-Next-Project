@@ -16,7 +16,7 @@ const Index = () => {
         .then((data) => setData(data.data));
     }
   }, [isReady]);
-  if (data) return <CustomerDetailsPage />;
+  if (data) return <CustomerDetailsPage data={data} />;
   return <div></div>;
 };
 
